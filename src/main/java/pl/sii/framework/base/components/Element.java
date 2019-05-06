@@ -1,12 +1,8 @@
-package com.assaabloy.shared.cliq.selenium.framework.model.base.component;
+package pl.sii.framework.base.components;
 
-import com.assaabloy.shared.cliq.selenium.framework.model.base.internals.Searchable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
-import org.openqa.selenium.interactions.internal.Coordinates;
-import org.openqa.selenium.interactions.internal.Locatable;
-import org.openqa.selenium.internal.WrapsElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +11,11 @@ import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.assaabloy.shared.cliq.selenium.framework.model.base.component.Page.browser;
 import static java.time.temporal.ChronoUnit.MILLIS;
 import static java.time.temporal.ChronoUnit.SECONDS;
+import static pl.sii.framework.base.components.Page.browser;
 
-public class Element implements WebElement, WrapsElement, Locatable, Searchable {
+public class Element implements WebElement, WrapsElement {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Element.class);
 
@@ -84,7 +80,6 @@ public class Element implements WebElement, WrapsElement, Locatable, Searchable 
         return element.findElements(by);
     }
 
-    @Override
     public List<Element> findElements(Locator locator) {
         return findElements(locator.by()).stream()
                 .map(Element::new)
@@ -96,7 +91,6 @@ public class Element implements WebElement, WrapsElement, Locatable, Searchable 
         return element.findElement(by);
     }
 
-    @Override
     public Element findElement(Locator locator) {
         return new Element(findElement(locator.by()));
     }
@@ -156,11 +150,6 @@ public class Element implements WebElement, WrapsElement, Locatable, Searchable 
         return element;
     }
 
-    @Override
-    public Coordinates getCoordinates() {
-        return ((Locatable) element).getCoordinates();
-    }
-
     public String attribute(String name) {
         return getAttribute(name);
     }
@@ -179,7 +168,7 @@ public class Element implements WebElement, WrapsElement, Locatable, Searchable 
 
     public void moveCursorOver() {
         ((JavascriptExecutor) browser()).executeScript("arguments[0].scrollIntoView();", element);
-        try{
+        try {
             actions.moveToElement(element).moveToElement(element).perform();
         } catch (MoveTargetOutOfBoundsException e) {
             LOGGER.warn("Error moving to element", e);
@@ -190,7 +179,7 @@ public class Element implements WebElement, WrapsElement, Locatable, Searchable 
     public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
         return null;
     }
-    
+
     public boolean containsLink() {
         return getTagName().equals("a") || findElements(By.tagName("a")).size() > 0;
     }

@@ -1,4 +1,4 @@
-package pl.sii.signup;
+package pl.sii.signin;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Unit test for simple App.
  */
-public class SignUpTest {
+public class SignInTest {
     /**
      * Rigorous Test :-)
      */

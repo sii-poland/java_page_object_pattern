@@ -1,4 +1,4 @@
-package com.assaabloy.shared.cliq.selenium.test.base;
+package pl.sii.framework.base.internals;
 
 public enum BrowserVersion {
 

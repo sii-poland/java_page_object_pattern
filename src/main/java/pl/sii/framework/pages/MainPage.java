@@ -1,4 +1,6 @@
 package pl.sii.framework.pages;
 
-public class MainPage {
+import pl.sii.framework.base.components.Page;
+
+public class MainPage extends Page {
 }

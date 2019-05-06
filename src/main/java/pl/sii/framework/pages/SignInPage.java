@@ -1,4 +1,6 @@
 package pl.sii.framework.pages;
 
-public class SignInPage {
+import pl.sii.framework.base.components.Page;
+
+public class SignInPage extends Page {
 }

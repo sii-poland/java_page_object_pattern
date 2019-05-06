@@ -1,6 +1,5 @@
-package com.assaabloy.shared.cliq.selenium.framework.model.base.component;
+package pl.sii.framework.base.components;
 
-import com.assaabloy.shared.cliq.selenium.framework.utils.Dictionary;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ByIdOrName;
 
@@ -13,23 +12,23 @@ public class Locator {
     }
 
     public static Locator id(String id) {
-        return new Locator(By.id(Dictionary.translate(id)));
+        return new Locator(By.id(id));
     }
 
     public static Locator css(String css) {
-        return new Locator(By.cssSelector(Dictionary.translate(css)));
+        return new Locator(By.cssSelector(css));
     }
 
     public static Locator xpath(String xpath) {
-        return new Locator(By.xpath(Dictionary.translate(xpath)));
+        return new Locator(By.xpath(xpath));
     }
 
     public static Locator tag(String tag) {
-        return new Locator(By.tagName(Dictionary.translate(tag)));
+        return new Locator(By.tagName(tag));
     }
 
     public static Locator className(String className) {
-        return new Locator(By.className(Dictionary.translate(className)));
+        return new Locator(By.className(className));
     }
 
     public By by() {
@@ -37,22 +36,22 @@ public class Locator {
     }
 
     public String toString() {
-        return "Locator: [" + by.toString() + "]";
+        return "Locator: {" + by.toString() + "}";
     }
 
     public static Locator linkText(String linkText) {
-        return new Locator(By.linkText(Dictionary.translate(linkText)));
+        return new Locator(By.linkText(linkText));
     }
 
     public static Locator name(String name) {
-        return new Locator(By.name(Dictionary.translate(name)));
+        return new Locator(By.name(name));
     }
 
     public static Locator partialLinkText(String linkText) {
-        return new Locator(By.partialLinkText(Dictionary.translate(linkText)));
+        return new Locator(By.partialLinkText(linkText));
     }
 
     public static Locator idOrName(String idOrName) {
-        return new Locator(new ByIdOrName(Dictionary.translate(idOrName)));
+        return new Locator(new ByIdOrName(idOrName));
     }
 }
