@@ -1,5 +1,6 @@
 package pl.sii.framework.configurations;
 
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.sii.framework.base.internals.BrowserType;
@@ -18,12 +19,15 @@ public class Configuration {
     private Properties properties;
 
     private static final String APPLICATION_ADDRESS_PROPERTY = "application.address";
+    @Getter
     private final String applicationAddress;
 
     private static final String BROWSER_TYPE_PROPERTY = "browser.type";
+    @Getter
     private Collection<BrowserType> browserTypes;
 
     private static final String FIREFOX_DOWNLOADS_DIR = "firefox.downloads.dir";
+    @Getter
     private final String firefoxDownloadsDir;
 
     private Configuration() {
@@ -64,13 +68,5 @@ public class Configuration {
         for (String browserType : browserTypesArray) {
             browserTypes.add(BrowserType.valueOf(browserType.trim()));
         }
-    }
-
-    public Iterable<BrowserType> getBrowserTypes() {
-        return browserTypes;
-    }
-
-    public String getFirefoxDownloadsDir() {
-        return firefoxDownloadsDir;
     }
 }

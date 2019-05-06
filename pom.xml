@@ -86,13 +86,13 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>4.0.0-alpha-1</version>
+            <version>${selenium.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-remote-driver</artifactId>
-            <version>4.0.0-alpha-1</version>
+            <version>${selenium.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

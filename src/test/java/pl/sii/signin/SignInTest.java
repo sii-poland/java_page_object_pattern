@@ -1,18 +1,17 @@
 package pl.sii.signin;
 
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Test;
+import pl.sii.framework.base.Application;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-/**
- * Unit test for simple App.
- */
 public class SignInTest {
-    /**
-     * Rigorous Test :-)
-     */
+
+
     @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
+    @Feature("Sign in to application")
+    public void userShouldBeRedirectedToMainPageWhenCorrectCredentialsProvided() {
+        Application.open()
+                .signIn();
+        // TODO
     }
 }
