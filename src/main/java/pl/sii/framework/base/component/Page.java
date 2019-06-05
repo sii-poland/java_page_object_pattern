@@ -1,9 +1,9 @@
-package pl.sii.framework.base.components;
+package pl.sii.framework.base.component;
 
 import org.openqa.selenium.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.sii.framework.base.internals.DriverFactory;
+import pl.sii.framework.base.factory.DriverManagerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,11 +12,14 @@ public abstract class Page {
     private static final Logger LOGGER = LoggerFactory.getLogger(Page.class);
 
     protected static WebDriver browser() {
-        return DriverFactory.getDriver();
+        return DriverManagerFactory.getManager()
+                .getDriver();
     }
 
     protected static void closeBrowser() {
-        DriverFactory.disposeDriver();
+        DriverManagerFactory.getManager()
+                .getDriver()
+                .close();
     }
 
     public List<Element> findElements(final Locator locator) {

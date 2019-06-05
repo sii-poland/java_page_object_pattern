@@ -1,11 +1,9 @@
-package pl.sii.framework.base.components;
+package pl.sii.framework.base.component;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.List;
@@ -13,11 +11,10 @@ import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.MILLIS;
 import static java.time.temporal.ChronoUnit.SECONDS;
-import static pl.sii.framework.base.components.Page.browser;
+import static pl.sii.framework.base.component.Page.browser;
 
+@Slf4j
 public class Element implements WebElement, WrapsElement {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Element.class);
 
     private final WebElement element;
     private final Actions actions;
@@ -29,19 +26,16 @@ public class Element implements WebElement, WrapsElement {
 
     @Override
     public void click() {
-        moveCursorOver();
         element.click();
     }
 
     @Override
     public void submit() {
-        moveCursorOver();
         element.submit();
     }
 
     @Override
     public void sendKeys(CharSequence... keysToSend) {
-        moveCursorOver();
         element.sendKeys(keysToSend);
     }
 
@@ -158,21 +152,12 @@ public class Element implements WebElement, WrapsElement {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException exception) {
-            LOGGER.error("sleep exception", exception);
+            log.error("sleep exception", exception);
         }
     }
 
     public Element parent() {
         return new Element(this.element.findElement(By.xpath("..")));
-    }
-
-    public void moveCursorOver() {
-        ((JavascriptExecutor) browser()).executeScript("arguments[0].scrollIntoView();", element);
-        try {
-            actions.moveToElement(element).moveToElement(element).perform();
-        } catch (MoveTargetOutOfBoundsException e) {
-            LOGGER.warn("Error moving to element", e);
-        }
     }
 
     @Override

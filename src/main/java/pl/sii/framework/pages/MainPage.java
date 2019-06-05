@@ -1,22 +1,24 @@
 package pl.sii.framework.pages;
 
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.sii.framework.base.components.Link;
-import pl.sii.framework.base.components.Page;
-import pl.sii.framework.base.factories.PageFactory;
+import pl.sii.framework.base.component.Page;
+import pl.sii.framework.base.factory.PageFactory;
 
-import static pl.sii.framework.base.internals.ElementWait.await;
+import static pl.sii.framework.base.internal.ElementWait.await;
 
+@Slf4j
 public class MainPage extends Page {
     private static final Logger LOGGER = LoggerFactory.getLogger(SignInPage.class);
 
-    @FindBy(xpath = "//*[@id='_desktop_user_info']/div/a")
-    Link signInLink;
+    @FindBy(css = "#_desktop_user_info > div > a")
+    WebElement signInLink;
 
     public SignInPage signIn() {
-        LOGGER.info("Go to 'Sign in' page");
+        log.info("Go to 'Sign in' page");
         await().untilClickable(signInLink)
                 .click();
         return PageFactory.create(SignInPage.class);

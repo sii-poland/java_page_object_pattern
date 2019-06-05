@@ -1,4 +1,4 @@
-package pl.sii.framework.base.components;
+package pl.sii.framework.base.component;
 
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;

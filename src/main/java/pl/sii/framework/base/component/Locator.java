@@ -1,4 +1,4 @@
-package pl.sii.framework.base.components;
+package pl.sii.framework.base.component;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ByIdOrName;

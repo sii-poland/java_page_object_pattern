@@ -1,10 +1,11 @@
-package pl.sii.framework.base.internals;
+package pl.sii.framework.base.internal;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pl.sii.framework.base.components.Element;
-import pl.sii.framework.base.components.Locator;
-import pl.sii.framework.configurations.Constants;
+import pl.sii.framework.base.component.Element;
+import pl.sii.framework.base.component.Locator;
+import pl.sii.framework.base.factory.DriverManagerFactory;
+import pl.sii.framework.configuration.Constants;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +19,8 @@ public final class ElementWait {
     private boolean useDefaultException;
 
     private ElementWait() {
-        wait = new WebDriverWait(DriverFactory.getDriver(), Constants.ACTION_TIMEOUT_IN_SECONDS);
+        wait = new WebDriverWait(DriverManagerFactory.getManager()
+                .getDriver(), Constants.ACTION_TIMEOUT_IN_SECONDS);
     }
 
     public static ElementWait await() {
