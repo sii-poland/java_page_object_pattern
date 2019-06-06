@@ -1,46 +1,46 @@
 package pl.sii.framework.base.component;
 
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pl.sii.framework.base.factory.DriverManagerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public abstract class Page {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Page.class);
 
-    protected static WebDriver browser() {
-        return DriverManagerFactory.getManager()
-                .getDriver();
+    @Getter
+    private WebDriver driver;
+
+    public Page(WebDriver driver) {
+        this.driver = driver;
     }
 
-    protected static void closeBrowser() {
-        DriverManagerFactory.getManager()
-                .getDriver()
-                .close();
+    public Page() {
+        this(DriverManagerFactory.getManager().getDriver());
     }
 
     public List<Element> findElements(final Locator locator) {
-        return browser().findElements(locator.by())
+        return driver.findElements(locator.by())
                 .stream()
                 .map(Element::new)
                 .collect(Collectors.toList());
     }
 
     public Element findElement(final Locator locator) {
-        return new Element(browser().findElement(locator.by()));
+        return new Element(driver.findElement(locator.by()));
     }
 
 
     public void refresh() {
-        browser().navigate().refresh();
+        driver.navigate().refresh();
     }
 
-    public static boolean isDisplayed(final Locator locator) {
+    public boolean isDisplayed(final Locator locator) {
         try {
-            return browser().findElement(locator.by()).isDisplayed();
+            return driver.findElement(locator.by()).isDisplayed();
         } catch (NotFoundException | StaleElementReferenceException | ElementNotVisibleException e) {
             return false;
         }

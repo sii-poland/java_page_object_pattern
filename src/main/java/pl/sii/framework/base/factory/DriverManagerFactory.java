@@ -1,20 +1,18 @@
 package pl.sii.framework.base.factory;
 
+import io.github.bonigarcia.wdm.DriverManagerType;
 import org.aeonbits.owner.ConfigFactory;
-import pl.sii.framework.base.internal.driver.DriverType;
 import pl.sii.framework.base.internal.driver.ChromeDriverManager;
 import pl.sii.framework.base.internal.driver.DriverManager;
 import pl.sii.framework.base.internal.driver.FirefoxDriverManager;
 import pl.sii.framework.configuration.Configuration;
 
 public class DriverManagerFactory {
-    private static  Configuration configuration = ConfigFactory.create(Configuration.class);
+    private static Configuration configuration = ConfigFactory.create(Configuration.class);
 
     public static DriverManager getManager() {
-
         DriverManager driverManager;
-
-        DriverType driverType = DriverType.valueOf(configuration.browserName());
+        DriverManagerType driverType = DriverManagerType.valueOf(configuration.browserName().toUpperCase());
 
         switch (driverType) {
             case CHROME:
@@ -28,6 +26,5 @@ public class DriverManagerFactory {
                 break;
         }
         return driverManager;
-
     }
 }

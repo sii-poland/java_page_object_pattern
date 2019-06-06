@@ -25,7 +25,6 @@ public class Application extends Page {
     public static void close() {
         log.info("Closing application");
         DriverManagerFactory.getManager()
-                .getDriver()
-                .close();
+                .quitDriver();
     }
 }

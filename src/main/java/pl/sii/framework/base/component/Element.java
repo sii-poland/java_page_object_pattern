@@ -2,7 +2,6 @@ package pl.sii.framework.base.component;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
@@ -11,17 +10,14 @@ import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.MILLIS;
 import static java.time.temporal.ChronoUnit.SECONDS;
-import static pl.sii.framework.base.component.Page.browser;
 
 @Slf4j
 public class Element implements WebElement, WrapsElement {
 
     private final WebElement element;
-    private final Actions actions;
 
     public Element(final WebElement element) {
         this.element = element;
-        actions = new Actions(browser());
     }
 
     @Override
