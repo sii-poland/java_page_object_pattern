@@ -1,17 +1,23 @@
 package pl.sii.base;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.WebDriver;
 import pl.sii.framework.base.Application;
+import pl.sii.framework.base.factory.DriverFactory;
 
 public class BaseTest {
+    private WebDriver driver;
+    protected Application application;
 
-    @BeforeAll
-    public static void setUpBeforeAll() {
+    @BeforeEach
+    public void setUpBeforeEach() {
+        this.driver = DriverFactory.getDriver();
+        application = new Application(driver);
     }
 
-    @AfterAll
-    public static void cleanUpAfterAll() {
-        Application.close();
+    @AfterEach
+    public void cleanUpAfterEach() {
+        application.close();
     }
 }

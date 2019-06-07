@@ -3,7 +3,8 @@ package pl.sii.framework.base.component;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
-import pl.sii.framework.base.factory.DriverManagerFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pl.sii.framework.base.factory.PageFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,14 +13,15 @@ import java.util.stream.Collectors;
 public abstract class Page {
 
     @Getter
-    private WebDriver driver;
+    protected WebDriver driver;
+    @Getter
+    protected WebDriverWait webDriverWait;
+    protected PageFactory pageFactory;
 
     public Page(WebDriver driver) {
         this.driver = driver;
-    }
-
-    public Page() {
-        this(DriverManagerFactory.getManager().getDriver());
+        this.webDriverWait = new WebDriverWait(driver, 15);
+        pageFactory = new PageFactory(driver);
     }
 
     public List<Element> findElements(final Locator locator) {

@@ -9,6 +9,6 @@ public interface Configuration extends Config {
 
     String gridHubUrl();
 
-    @DefaultValue("chrome")
+    @DefaultValue("firefox")
     String browserName();
 }
