@@ -4,7 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import pl.sii.framework.base.Application;
-import pl.sii.framework.base.factory.DriverFactory;
+import pl.sii.framework.base.factory.DriverFactoryProvider;
 
 public class BaseTest {
     private WebDriver driver;
@@ -12,7 +12,7 @@ public class BaseTest {
 
     @BeforeEach
     public void setUpBeforeEach() {
-        this.driver = DriverFactory.getDriver();
+        this.driver = new DriverFactoryProvider().getDriverFactory().getDriver();
         application = new Application(driver);
     }
 

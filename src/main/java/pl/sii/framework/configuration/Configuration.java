@@ -7,8 +7,12 @@ public interface Configuration extends Config {
     @DefaultValue("http://5.196.7.235")
     String applicationAddress();
 
+    @DefaultValue("http://localhost:5566/wd/hub")
     String gridHubUrl();
 
-    @DefaultValue("firefox")
+    @DefaultValue("FIREFOX")
     String browserName();
+
+    @DefaultValue("REMOTE")
+    String driverType();
 }

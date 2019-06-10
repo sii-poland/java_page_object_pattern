@@ -3,20 +3,18 @@ package pl.sii.framework.base.factory;
 import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
-import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pl.sii.framework.configuration.Configuration;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 @Slf4j
-public class DriverFactory {
-    private static Configuration configuration = ConfigFactory.create(Configuration.class);
+public class LocalDriverFactory implements IDriverFactory {
 
-    public static WebDriver getDriver() {
+    @Override
+    public WebDriver getDriver() {
         DriverManagerType driverType;
         WebDriver driver;
         try {
@@ -30,17 +28,14 @@ public class DriverFactory {
         }
         switch (driverType) {
             case CHROME:
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(BrowserOptionsFactory.getOptions());
                 break;
             case FIREFOX:
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
+                driver = new FirefoxDriver(BrowserOptionsFactory.getOptions());
                 break;
             default:
                 log.warn("Browser not provided, using default one");
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(BrowserOptionsFactory.getOptions());
                 break;
         }
         return driver;
