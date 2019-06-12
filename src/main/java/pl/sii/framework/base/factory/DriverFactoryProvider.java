@@ -20,7 +20,7 @@ public class DriverFactoryProvider {
                 driverFactory = new RemoteDriverFactory();
                 break;
             default:
-                throw new IllegalStateException("Wrong browserType, supported types: [LOCAL, REMOTE]");
+                throw new IllegalStateException("Wrong driverType, supported types: [LOCAL, REMOTE]");
         }
         return driverFactory;
     }
