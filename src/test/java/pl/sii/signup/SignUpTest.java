@@ -1,18 +1,15 @@
 package pl.sii.signup;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+import pl.sii.base.BaseTest;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+@Execution(ExecutionMode.CONCURRENT)
+public class SignUpTest extends BaseTest {
 
-/**
- * Unit test for simple App.
- */
-public class SignUpTest {
-    /**
-     * Rigorous Test :-)
-     */
     @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
+    public void userShouldBeAbleToSignUpWhenFormFilledCorrectly() {
+        application.open(); //TODO
     }
 }
