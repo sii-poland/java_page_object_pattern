@@ -4,7 +4,7 @@ This project provide Selenium test framework to implement and run functional tes
 Framework is fully configurable by configuration.properties file (placed in resources directory).  
   
 
-## **Configuration description**
+## Configuration description
 
  
 
