@@ -1,9 +1,9 @@
-#Selenium Test Framework  
+# Selenium Test Framework  
 This project provides selenium test framework. It is written in Java and follows best practices as well as most recent 
 and top rated tools. It is designed for web test automation, to implement and run robust functional tests.  
 Since everything is set up, the tests can be added and run straight away.
  
-##Framework Features:
+## Framework Features:
 * follows page object pattern
 * parallel test execution ready
 * full control by annotations
@@ -13,7 +13,7 @@ Since everything is set up, the tests can be added and run straight away.
 * pretty and highly readable test result report
 * easy for extension and customisation
  
-##The Project's Structure:
+## The Project's Structure:
 * the pl.sii.framework package placed in src\main\java contains framework specific implementation
 * the pl.sii package placed in src\test\java contains automated sample test cases 
 * src\main\resources contains properties files
@@ -22,11 +22,11 @@ Since everything is set up, the tests can be added and run straight away.
   * all the required dependencies with versions extracted to maven properties to reduce maintenance
   * build plugins to compile java classes, run tests and generate report
 
-##Framework Extension
+## Framework Extension
 * to extend framework components for extra web elements add class implementation to pl.sii.framework.base.components package
 * to provide additional browsers consider the RemoteDriverFactory class placed in pl.sii.framework.base.factory package
 
-##Configuration Description
+## Configuration Description
 * **applicationAddress** - base address of application under test, by default points to sample shop application hosted on SII servers.
  ```  
    applicationAddress=http://5.196.7.235  
@@ -48,11 +48,11 @@ For REMOTE driver type run selenium grid hub first - more details at https://www
   gridHubUrl=http://localhost:5566/wd/hub  
 ```  
 
-##Test Implementation
+## Test Implementation
 * new test's implementation is to be placed in the pl.sii package placed in src\test\java
 * test class implementation needs to extend BaseTest.java class
 
-##Run Automated Tests
+## Run Automated Tests
 To run the tests use simple maven command:  
 ```  
 mvn clean test  
