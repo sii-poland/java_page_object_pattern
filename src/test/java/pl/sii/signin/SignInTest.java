@@ -15,6 +15,7 @@ package pl.sii.signin;
 
 import io.qameta.allure.Feature;
 import net.bytebuddy.utility.RandomString;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -26,6 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SignInTest extends BaseTest {
 
     @Test
+    @Tag("signin")
     @Feature("Sign in to application with incorrect credentials")
     public void errorMessageShouldBeVisibleWhenIncorrectCredentialsProvided() {
         assertThat(
