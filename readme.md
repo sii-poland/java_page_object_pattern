@@ -53,10 +53,15 @@ For REMOTE driver type run selenium grid hub first - more details at https://www
 * test class implementation needs to extend BaseTest.java class
 
 ## Run Automated Tests
-To run the tests use simple maven command:  
+To run all tests use simple maven command:  
 ```  
 mvn clean test  
 ```  
+
+To run tests for particular @tag use simple maven command:  
+```  
+mvn clean test -Dtag=<tag_name>
+``` 
   
 ## Generate Test Report  
 Allure framework is used to generate report from test results - https://github.com/allure-framework/allure-maven  
