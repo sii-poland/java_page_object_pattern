@@ -13,11 +13,17 @@
 
 package pl.sii.base;
 
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import pl.sii.framework.base.Application;
 import pl.sii.framework.base.factory.DriverFactoryProvider;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class BaseTest {
     private WebDriver driver;
@@ -31,6 +37,11 @@ public class BaseTest {
 
     @AfterEach
     public void cleanUpAfterEach() {
+        Allure.getLifecycle().addAttachment(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MMM-yy_hh:mm:ss")), "image/png", "png", makeScreenShot());
         application.close();
+    }
+
+    private byte[] makeScreenShot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
