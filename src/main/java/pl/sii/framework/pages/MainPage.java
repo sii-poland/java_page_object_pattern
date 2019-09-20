@@ -13,6 +13,7 @@
 
 package pl.sii.framework.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,7 @@ public class MainPage extends Page {
         super(driver);
     }
 
+    @Step("User navigate to 'Sign in' page")
     public SignInPage signIn() {
         log.info("Go to 'Sign in' page");
         signInLink.click();

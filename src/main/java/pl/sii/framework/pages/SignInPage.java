@@ -13,6 +13,7 @@
 
 package pl.sii.framework.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,30 +39,35 @@ public class SignInPage extends Page {
     @FindBy(css = ".alert-danger")
     WebElement alertMessage;
 
+    @Step("User set email address to email input field")
     public SignInPage withEmail(String email) {
         log.info("Set email {}", email);
         emailInput.sendKeys(email);
         return this;
     }
 
+    @Step("User sets password to password input field")
     public SignInPage withPassword(String password) {
         log.info("Set password {}", password);
         passwordInput.sendKeys(password);
         return this;
     }
 
+    @Step("User clicks on Submit button")
     public MainPage submit() {
         log.info("Submit login form");
         submitButton.click();
         return pageFactory.create(MainPage.class);
     }
 
+    @Step("User clicks on Submit button")
     public SignInPage submitWithoutSuccess() {
         log.info("Submit login form");
         submitButton.click();
         return this;
     }
 
+    @Step("User checks if alert message is displayed")
     public boolean isAlertMessageDisplayed() {
         log.info("Check if alert message displayed");
         return webDriverWait.until(webDriver -> alertMessage.isDisplayed())
