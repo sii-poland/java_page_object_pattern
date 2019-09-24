@@ -35,7 +35,7 @@ public class SignInTest extends BaseTest {
                         .withPassword(RandomString.make())
                         .submitWithoutSuccess()
                         .isAlertMessageDisplayed())
-                .isTrue()
+                .isFalse()
                 .withFailMessage("Alert message is not displayed");
     }
 }
