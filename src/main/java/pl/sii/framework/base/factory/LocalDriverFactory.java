@@ -14,11 +14,14 @@
 package pl.sii.framework.base.factory;
 
 import io.github.bonigarcia.wdm.DriverManagerType;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import pl.sii.framework.base.factory.loader.ChromeDriverLoader;
+import pl.sii.framework.base.factory.loader.FirefoxDriverLoader;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -41,14 +44,17 @@ public class LocalDriverFactory implements IDriverFactory {
         }
         switch (driverType) {
             case CHROME:
-                driver = new ChromeDriver(BrowserOptionsFactory.getOptions());
+                ChromeDriverLoader.load();
+                driver = new ChromeDriver((ChromeOptions) BrowserOptionsFactory.getOptions());
                 break;
             case FIREFOX:
-                driver = new FirefoxDriver(BrowserOptionsFactory.getOptions());
+                FirefoxDriverLoader.load();
+                driver = new FirefoxDriver((FirefoxOptions) BrowserOptionsFactory.getOptions());
                 break;
             default:
                 log.warn("Browser not provided, using default one");
-                driver = new ChromeDriver(BrowserOptionsFactory.getOptions());
+                ChromeDriverLoader.load();
+                driver = new ChromeDriver((ChromeOptions) BrowserOptionsFactory.getOptions());
                 break;
         }
         return driver;

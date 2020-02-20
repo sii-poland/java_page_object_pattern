@@ -13,6 +13,7 @@
 
 package pl.sii.signup;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -22,6 +23,7 @@ import pl.sii.base.BaseTest;
 public class SignUpTest extends BaseTest {
 
     @Test
+    @Tag("signup")
     public void userShouldBeAbleToSignUpWhenFormFilledCorrectly() {
         application.open(); //TODO
     }

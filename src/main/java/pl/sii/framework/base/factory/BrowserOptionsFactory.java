@@ -43,12 +43,11 @@ public class BrowserOptionsFactory {
         }
         switch (driverType) {
             case CHROME:
-                WebDriverManager.chromedriver().setup();
                 options = new ChromeOptions();
                 ((ChromeOptions) options).addArguments("start-maximized");
                 break;
             case FIREFOX:
-                WebDriverManager.firefoxdriver().setup();
+
                 options = new FirefoxOptions();
                 ((FirefoxOptions) options).setHeadless(false);
                 break;

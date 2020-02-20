@@ -14,7 +14,6 @@
 package pl.sii.framework.base.factory;
 
 import io.github.bonigarcia.wdm.DriverManagerType;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -53,20 +52,17 @@ public class RemoteDriverFactory implements IDriverFactory {
         }
         switch (driverType) {
             case CHROME:
-                WebDriverManager.chromedriver().setup();
                 desiredCapabilities = new DesiredCapabilities();
                 desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, BrowserOptionsFactory.getOptions());
                 driver = new RemoteWebDriver(gridHubUrl, desiredCapabilities);
                 break;
             case FIREFOX:
-                WebDriverManager.firefoxdriver().setup();
                 desiredCapabilities = new DesiredCapabilities();
                 desiredCapabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, BrowserOptionsFactory.getOptions());
                 driver = new RemoteWebDriver(gridHubUrl, desiredCapabilities);
                 break;
             default:
                 log.warn("Browser not provided, using default one");
-                WebDriverManager.chromedriver().setup();
                 desiredCapabilities = new DesiredCapabilities();
                 desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, BrowserOptionsFactory.getOptions());
                 driver = new RemoteWebDriver(gridHubUrl, desiredCapabilities);
