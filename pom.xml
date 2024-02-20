@@ -22,19 +22,19 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <name>JavaPageObjectTemplate</name>
-    <url>http://5.196.7.235</url>
+    <url>http://www.automationpractice.pl/index.php</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <aspectj.version>1.8.10</aspectj.version>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+        <aspectj.version>1.9.21</aspectj.version>
         <org.junit.jupiter>5.4.2</org.junit.jupiter>
-        <org.slf4j>1.8.0-beta4</org.slf4j>
-        <selenium.version>4.0.0-alpha-1</selenium.version>
+        <org.slf4j>2.0.9</org.slf4j>
+        <selenium.version>4.17.0</selenium.version>
         <lombok.version>1.18.8</lombok.version>
         <io.qameta.allure>2.13.0</io.qameta.allure>
-        <java.version>1.8</java.version>
+        <java.version>16</java.version>
     </properties>
 
     <dependencies>
@@ -106,12 +106,22 @@
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
             <artifactId>owner-java8</artifactId>
-            <version>1.0.10</version>
+            <version>1.0.12</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>3.6.0</version>
+            <version>5.6.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
         </dependency>
     </dependencies>
 
@@ -120,7 +130,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.2.2</version>
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <argLine>
@@ -139,18 +149,19 @@
                         </property>
                     </systemProperties>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.10.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

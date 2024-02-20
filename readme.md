@@ -29,7 +29,7 @@ Since everything is set up, the tests can be added and run straight away.
 ## Configuration Description
 * **applicationAddress** - base address of application under test, by default points to sample shop application hosted on SII servers.
  ```  
-   applicationAddress=http://5.196.7.235  
+   applicationAddress=http://www.automationpractice.pl/index.php
 ```  
   
 * **browserName** - name of the browser to run tests on, already preconfigure values are: CHROME, FIREFOX  

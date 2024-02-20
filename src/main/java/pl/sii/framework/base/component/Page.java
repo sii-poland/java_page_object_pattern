@@ -16,9 +16,12 @@ package pl.sii.framework.base.component;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.sii.framework.base.factory.PageFactory;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,12 +31,15 @@ public abstract class Page {
     @Getter
     protected WebDriver driver;
     @Getter
-    protected WebDriverWait webDriverWait;
+    protected Wait<WebDriver> webDriverWait;
     protected PageFactory pageFactory;
 
     public Page(WebDriver driver) {
         this.driver = driver;
-        this.webDriverWait = new WebDriverWait(driver, 15);
+        this.webDriverWait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(15))
+                .pollingEvery(Duration.ofMillis(300))
+                .withMessage("WebElement was not found in specified timeout");
         pageFactory = new PageFactory(driver);
     }
 
@@ -41,7 +47,7 @@ public abstract class Page {
         return driver.findElements(locator.by())
                 .stream()
                 .map(Element::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Element findElement(final Locator locator) {
@@ -56,7 +62,7 @@ public abstract class Page {
     public boolean isDisplayed(final Locator locator) {
         try {
             return driver.findElement(locator.by()).isDisplayed();
-        } catch (NotFoundException | StaleElementReferenceException | ElementNotVisibleException e) {
+        } catch (NotFoundException | StaleElementReferenceException | ElementNotInteractableException e) {
             return false;
         }
     }
@@ -64,7 +70,7 @@ public abstract class Page {
     public static boolean isDisplayed(WebElement element) {
         try {
             return element.isDisplayed();
-        } catch (NotFoundException | StaleElementReferenceException | ElementNotVisibleException e) {
+        } catch (NotFoundException | StaleElementReferenceException | ElementNotInteractableException e) {
             return false;
         }
     }
