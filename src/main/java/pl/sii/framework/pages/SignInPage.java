@@ -27,13 +27,13 @@ public class SignInPage extends Page {
         super(driver);
     }
 
-    @FindBy(css = "input[name='email']")
+    @FindBy(css = "#email")
     private WebElement emailInput;
 
-    @FindBy(css = "input[name='password']")
+    @FindBy(css = "input[name='passwd']")
     WebElement passwordInput;
 
-    @FindBy(css = "button[id='submit-login']")
+    @FindBy(css = "button[id='SubmitLogin']")
     WebElement submitButton;
 
     @FindBy(css = ".alert-danger")

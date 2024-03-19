@@ -23,7 +23,7 @@ import pl.sii.framework.base.component.Page;
 @Slf4j
 public class MainPage extends Page {
 
-    @FindBy(css = "#_desktop_user_info > div > a")
+    @FindBy(css = ".header_user_info")
     WebElement signInLink;
 
     public MainPage(WebDriver driver) {

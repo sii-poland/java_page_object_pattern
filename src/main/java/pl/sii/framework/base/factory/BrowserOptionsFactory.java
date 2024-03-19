@@ -13,7 +13,7 @@
 
 package pl.sii.framework.base.factory;
 
-import io.github.bonigarcia.wdm.DriverManagerType;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
@@ -47,9 +47,7 @@ public class BrowserOptionsFactory {
                 ((ChromeOptions) options).addArguments("start-maximized");
                 break;
             case FIREFOX:
-
                 options = new FirefoxOptions();
-                ((FirefoxOptions) options).setHeadless(false);
                 break;
             default:
                 log.warn("Browser not provided, using default one");
