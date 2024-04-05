@@ -27,19 +27,19 @@ public class SignInPage extends Page {
         super(driver);
     }
 
-    @FindBy(css = "input[name='email']")
+    @FindBy(css = "#email")
     private WebElement emailInput;
 
-    @FindBy(css = "input[name='password']")
+    @FindBy(css = "#passwd")
     WebElement passwordInput;
 
-    @FindBy(css = "button[id='submit-login']")
+    @FindBy(css = "#SubmitLogin")
     WebElement submitButton;
 
     @FindBy(css = ".alert-danger")
     WebElement alertMessage;
 
-    @Step("User set email address to email input field")
+    @Step("User sets email address to email input field")
     public SignInPage withEmail(String email) {
         log.info("Set email {}", email);
         emailInput.sendKeys(email);

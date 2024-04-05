@@ -13,12 +13,27 @@
 
 package pl.sii.framework.pages;
 
+import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import pl.sii.framework.base.component.Page;
 
+@Slf4j
 public class SignUpPage extends Page {
 
     public SignUpPage(WebDriver driver) {
         super(driver);
+    }
+
+    @FindBy(css = "#email_create")
+    private WebElement emailInput;
+
+    @Step("User sets email address to email input field")
+    public SignUpPage withEmail(String email) {
+        log.info("Set email {}", email);
+        emailInput.sendKeys(email);
+        return this;
     }
 }

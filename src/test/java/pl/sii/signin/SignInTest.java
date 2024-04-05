@@ -24,11 +24,11 @@ import pl.sii.base.BaseTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("Sign in with incorrect credentials.")
 @Execution(ExecutionMode.CONCURRENT)
 public class SignInTest extends BaseTest {
 
     @Test
+    @DisplayName("Sign in with incorrect credentials.")
     @Tag("signin")
     @Feature("Sign in to application with incorrect credentials")
     public void errorMessageShouldBeVisibleWhenIncorrectCredentialsProvided() {
